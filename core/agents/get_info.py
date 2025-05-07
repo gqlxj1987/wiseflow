@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import asyncio
 from loguru import logger
-import os, re
+import os
+import regex as re
 from llms.openai_wrapper import openai_llm as llm
-# from core.llms.siliconflow_wrapper import sfa_llm # or other llm wrapper
 from utils.general_utils import normalize_url, url_pattern
 from .get_info_prompts import *
 
@@ -357,8 +357,6 @@ async def get_info(texts: list[str], link_dict: dict, prompts: list[str], author
         res = res[-1].strip()
         if _logger:
             _logger.debug(res)
-        if test_mode:
-            print(res)
         if len(res) < 3:
             continue
 
@@ -372,7 +370,6 @@ async def get_info(texts: list[str], link_dict: dict, prompts: list[str], author
                     _logger.warning(f"model hallucination: {res} \ncontains {_tag} which is not in link_dict")
                 if test_mode:
                     print(f"model hallucination: {res} \ncontains {_tag} which is not in link_dict")
-                res = res.replace(_tag, '')
         final.append({'content': f"{info_pre_fix}{res}", 'references': refences})
     
     return final

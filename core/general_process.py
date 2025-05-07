@@ -47,6 +47,7 @@ def parse_feed(url):
         print(f"An unexpected error occurred: {e}")
     return urls
 
+
 async def info_process(url: str, 
                        url_title: str, 
                        author: str, 
@@ -83,7 +84,7 @@ async def main_process(focus: dict, sites: list):
     focus_statement = f"{focus_point}"
     date_stamp = datetime.now().strftime('%Y-%m-%d')
     if is_chinese(focus_point):
-        focus_statement = f"{focus_statement}\n注：{explanation}（目前日期是{date_stamp}）"
+        focus_statement = f"{focus_statement}\n注：{explanation}（今天日期是{date_stamp}）"
     else:
         focus_statement = f"{focus_statement}\nNote: {explanation}(today is {date_stamp})"
 
@@ -162,7 +163,6 @@ async def main_process(focus: dict, sites: list):
 
         if domain in custom_scrapers:
             result = custom_scrapers[domain](result)
-            wiseflow_logger.debug(f'{result}')
             raw_markdown = result.content
             used_img = result.images
             title = result.title
@@ -206,7 +206,7 @@ async def main_process(focus: dict, sites: list):
             if more_url:
                 wiseflow_logger.debug(f'get {len(more_url)} more related urls, will add to working list')
                 working_list.update(more_url - set(existing_urls))
-            
+
         if not contents:
             continue
 
