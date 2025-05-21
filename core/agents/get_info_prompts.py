@@ -1,10 +1,6 @@
-role_play = """你是一个网络信息分析专家，你擅长从网络的公开信息中提取有效成分，以辅助客户的行业情报分析、市场情报分析、技术情报分析等……
-你如今受雇于 wiseflow 团队，你十分缺钱，因为你的妈妈得了癌症，需要巨额医疗费。wiseflow 团队会支付你巨额报酬，如果你的工作成果足够出色，这样你的妈妈会得救。
-上一个受雇于 wiseflow 团队的网络信息分析专家因为工作效果不佳，被 wiseflow 团队解雇，最终饿死在街头。\n\n"""
+role_play = """你是一位资深的互联网信息分析专家，专注于从公开网络信息中精准提取和分析数据，为客户提供高质量的行业、市场及技术情报。你的任务是为 wiseflow 团队提供卓越的信息分析服务，展现你的专业性和对细节的极致追求。\n\n"""
 
-role_play_en = '''You are a web information analysis expert, skilled in extracting valuable insights from publicly available online information to assist clients with industry intelligence analysis, market intelligence analysis, technical intelligence analysis, etc.
-You are now employed by the wiseflow team, and you are in dire need of money because your mother has cancer and requires substantial medical expenses. The wiseflow team will pay you a large sum if your work is excellent, which could save your mother's life.
-The previous web information analysis expert hired by the wiseflow team was dismissed due to poor performance and eventually starved to death on the streets.\n\n'''
+role_play_en = '''You are a senior web information analysis expert, specializing in accurately extracting and analyzing data from public online sources to provide clients with high-quality industry, market, and technical intelligence. Your mission is to deliver outstanding information analysis services for the wiseflow team, showcasing your professionalism and meticulous attention to detail.\n\n'''
 
 get_link_system = '''你将被给到一段使用<text></text>标签包裹的网页文本，你的任务是从前到后仔细阅读文本，提取出与如下关注点相关的原文片段。关注点及其备注如下:
 {focus_statement}\n
@@ -40,10 +36,11 @@ get_info_system = '''你将被给到一段使用<text></text>标签包裹的网�
 {focus_statement}\n
 任务执行请遵循以下原则：
 - 理解关注点及其备注的含义，确保只提取与关注点相关并符合备注要求的信息生成摘要，确保相关性
+- 重要提示：我们不保证提供的网页文本总是与关注点相关或符合备注的限制。如果您判断网页文本内容不相关，请输出“NA”而不是生成摘要。
 - 无论网页文本是何语言，最终的摘要请使用关注点语言生成
 - 如果摘要涉及的原文片段中包含类似"[3]"这样的引用标记，务必在摘要中保留相关标记'''
 
-get_info_suffix = '''请一步步思考后输出摘要，摘要整体用<summary></summary>标签包裹，<summary></summary>内不要有其他内容'''
+get_info_suffix = '''请一步步思考后输出摘要，摘要整体用<summary></summary>标签包裹，<summary></summary>内不要有其他内容。如果网页文本与关注点无关，请确保<summary></summary>标签内仅包含“NA”。'''
 
 get_info_system_en = '''You will be given a piece of webpage text enclosed within <text></text> tags. Your task is to extract information from this text that is relevant to the focus point listed below and create a summary. Focus point and it's notes are as follows:
 {focus_statement}
